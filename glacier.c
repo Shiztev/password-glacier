@@ -46,18 +46,6 @@ const char * SPECIALS = "!@#$%^&*";
 
 
 /**
- * Array of possible upper-case alphabetic characters.
- */
-const char * UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-
-/**
- * Array of possible lower-case alphabetic characters.
- */
-const char * LOWER = "abcdefghijklmnopqrstuvwxyz";
-
-
-/**
  * Generates a password with respect to parameters.
  */
 char * password(int l, int num, int sp) {
