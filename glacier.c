@@ -30,9 +30,9 @@
 
 
 /**
- * Array of possible numeric characters.
+ * Length of SPECIALS.
  */
-const char * NUMBERS = "1234567890";
+#define SP_LEN 8
 
 
 /**
@@ -58,15 +58,35 @@ const char * LOWER = "abcdefghijklmnopqrstuvwxyz";
  */
 char * password(int l, int num, int sp) {
     // declare (and initialize) variables
+    int * indexs = (int *)malloc(l * sizeof(char));
     char pswrd[l];
+    char ints[num];
+    char special[sp]; 
+
+    for (int i = 0; i < l; i++) {
+        indexs[i] = i;
+    }
 
     // check if l within max/min length
-
+    if (!((l <= MAX_LEN) && (l >= MIN_LEN))) {
+        fprintf(stderr, "Error: length of %d out of bounds. Length must be between %d and %d.", l, MIN_LEN, MAX_LEN);
+        return NULL;
+    
     // check params are valid (l >= (num + sp))
+    } else if (!(l >= (num + sp))) {
+        fprintf(stderr, "Error: number of special (%d) and numeric (%d) characters are greater than provided length (%d).",sp, num, l);
+        return NULL;
+    }
 
     // choose num numeric characters
+    for (int i = 0; i < num; i++) {
+        ints[i] = rand() % 10;
+    }
 
     // choose sp special characters
+    for (int i = 0; i < num; i++){
+        special[i] = SPECIALS[rand() % SP_LEN];
+    }
 
     // choose l - num - sp alphabetic characters
 
