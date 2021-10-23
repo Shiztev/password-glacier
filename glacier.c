@@ -16,6 +16,10 @@
     to a more calculating way of generating characters (could use ascii, 
     but special characters get weird). */
 
+/* rand() is not secure. An improvement woould be to utilize a more secure
+    random number generator (e.g. randombytes API) */
+    // libsodium: https://github.com/jedisct1/libsodium
+
 
 /**
  * Max number of characters constituting password.
@@ -59,9 +63,14 @@ const char * LOWER = "abcdefghijklmnopqrstuvwxyz";
 char * password(int l, int num, int sp) {
     // declare (and initialize) variables
     int * indexs = (int *)malloc(l * sizeof(char));
+    int c = (l - num) - sp;
     char pswrd[l];
     char ints[num];
     char special[sp]; 
+    char alpha[c];
+
+    srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
+    // https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c/39475626#39475626
 
     for (int i = 0; i < l; i++) {
         indexs[i] = i;
@@ -84,11 +93,20 @@ char * password(int l, int num, int sp) {
     }
 
     // choose sp special characters
-    for (int i = 0; i < num; i++){
+    for (int i = 0; i < sp; i++){
         special[i] = SPECIALS[rand() % SP_LEN];
     }
 
     // choose l - num - sp alphabetic characters
+    for (int i = 0; i < c; i++) {
+        // randomly determine if it should be upper-case/lower-case
+        if ((rand() % 2) == 0) {  // upper-case
+            alpha[i] = (char)(65 + (rand() % 26));  // ascii translation
+        
+        } else {  // lower-case
+            alpha[i] = (char)(97 + (rand() % 26));  // ascii translation
+        }
+    }
 
     // randomly insert characters into string such that
     // they are not inserted on a used index
