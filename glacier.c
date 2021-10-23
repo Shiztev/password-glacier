@@ -72,7 +72,7 @@ char * password(int l, int num, int sp) {
     srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
     // https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c/39475626#39475626
 
-    for (int i = 0; i < l; i++) {
+    for (int i = 0; i < l; i++) {  // find api for a set implementation
         indexs[i] = i;
     }
 
