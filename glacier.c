@@ -99,6 +99,9 @@ char * password(int l, int num, int sp) {
     // randomly insert characters into string such that
     // they are not inserted on a used index
 
+    // maybe add feature so that params are passed by reference, reassigned
+    // values (e.g. NULL), and deallocated for security?
+
     return pswrd;
 }
 
