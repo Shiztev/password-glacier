@@ -16,9 +16,10 @@
     to a more calculating way of generating characters (could use ascii, 
     but special characters get weird). */
 
-/* rand() is not secure. An improvement woould be to utilize a more secure
+/* rand() is not secure. An improvement would be to utilize a more secure
     random number generator (e.g. randombytes API) */
     // libsodium: https://github.com/jedisct1/libsodium
+    // urandom
 
 
 /**
@@ -55,12 +56,12 @@ const char * SPECIALS = "!@#$%^&*";
  */
 static char * make_password(int l, int num, int sp) {
     // declare (and initialize) variables
-    int * indexs = (int *)malloc(l * sizeof(char));
-    int c = (l - num) - sp;
-    char pswrd[l];
-    char ints[num];
-    char special[sp]; 
-    char alpha[c];
+    int * indexs = (int *)malloc(l * sizeof(char)); // dynamically alloced indexs
+    int c = (l - num) - sp;  // number of alphabetic characters to be in password
+    char pswrd[l];  // password's character buffer
+    char ints[num];  // numerical character buffer
+    char special[sp];  // special character buffer
+    char alpha[c];  // alphabetical character buffer
 
     srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
     // https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c/39475626#39475626
