@@ -46,9 +46,14 @@ const char * SPECIALS = "!@#$%^&*";
 
 
 /**
- * Generates a password with respect to parameters.
+ * @brief Generates a password with respect to parameters.
+ * 
+ * @param l desired length of password
+ * @param num number of integers to be in password
+ * @param sp number of special characters to be in password
+ * @return a randomized password, within the provided parameters
  */
-char * password(int l, int num, int sp) {
+static char * make_password(int l, int num, int sp) {
     // declare (and initialize) variables
     int * indexs = (int *)malloc(l * sizeof(char));
     int c = (l - num) - sp;
@@ -106,9 +111,13 @@ char * password(int l, int num, int sp) {
 }
 
 
+char * password(int l, int num, int sp) {
+    return make_password(l, num, sp);
+}
+
 
 /**
- * Allows the user to specify how they would like their 
+ * @brief Allows the user to specify how they would like their 
  * password formated.
  * 
  * @param argc number of command line arguments passed in
