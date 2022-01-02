@@ -41,6 +41,24 @@
 
 
 /**
+ * Default password length.
+ */
+#define DEF_LEN 20
+
+
+/**
+ * Default number of special characters.
+ */
+#define DEF_SP 4
+
+
+/**
+ * Default number of integers.
+ */
+#define DEF_INTS 4
+
+
+/**
  * Array of possible special characters.
  */
 const char * SPECIALS = "!@#$%^&*";
