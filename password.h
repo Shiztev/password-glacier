@@ -1,13 +1,13 @@
 /**
- * @file glacier.h
+ * @file password.h
  * @brief Definitions for password generating functions.
  * 
  * @author Stevie Alvarez
  */
 
 
-#ifndef GLACIER_H
-#define GLACIER_H
+#ifndef PASSWORD_H
+#define PASSWORD_H
 
 
 /**
