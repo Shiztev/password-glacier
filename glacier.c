@@ -145,7 +145,6 @@ char * password(int l, int num, int sp) {
  * @return 0 if successful, 1 otherwise
  */
 int main(int argc, char * argv[]) {
-    // declare and init vars
     /**
      * Lengths of password elements.
      *      Order: PASSWORD LENGTH, NUMBER OF INTS, NUMBER OF SPECIAL CHARS
@@ -158,6 +157,7 @@ int main(int argc, char * argv[]) {
     }
 
     // to generate a password, print the password, then exit.
+    printf("%s\n", password(lengths[0], lengths[1], lengths[2]));
 
     // otherwise, loop, gathering user input, and produce 
     // passwords w/r/t user input. Exit on EOF or dedicated 
