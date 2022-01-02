@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "glacier.h"
 
@@ -144,7 +145,18 @@ char * password(int l, int num, int sp) {
  * @return 0 if successful, 1 otherwise
  */
 int main(int argc, char * argv[]) {
+    // declare and init vars
+    /**
+     * Lengths of password elements.
+     *      Order: PASSWORD LENGTH, NUMBER OF INTS, NUMBER OF SPECIAL CHARS
+     */
+    int lengths[] = {DEF_LEN, DEF_INTS, DEF_SP};
+
     // if user provides args from command line, utilize those 
+    for (int i = 1; i < argc; i++) {
+        lengths[i - 1] = strtol(argv[i], NULL, 10);
+    }
+
     // to generate a password, print the password, then exit.
 
     // otherwise, loop, gathering user input, and produce 
