@@ -6,6 +6,13 @@
  */
 
 
+/**
+ * Max number of characters constituting a password.
+ */
+#ifndef MAX_LEN
+#define MAX_LEN 127
+#endif
+
 #ifndef PASSWORD_H
 #define PASSWORD_H
 

@@ -15,12 +15,6 @@
 
 
 /**
- * Max number of characters constituting password.
- */
-#define MAX_LEN 127
-
-
-/**
  * Minimum number of characters constituting password.
  */
 #define MIN_LEN 3
