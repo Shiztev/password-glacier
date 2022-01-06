@@ -15,9 +15,21 @@
 
 
 /**
+ * Minimum length of the password.
+ */
+#define MIN_LEN 3
+
+
+/**
  * Maximum number of possible characters that can be used in a password.
  */
 #define MAX_CHARS 68
+
+
+/**
+ * Number of possible character 'types' e.g. upper-case, int, etc.
+ */
+#define TYPE_LEN 4
 
 
 /**
@@ -45,7 +57,11 @@ static char * make_password(int l, int num, int sp) {
      * Data structure containing the current possible data types that can be
      * appended to the password. 
      */
-    int type [] = {0, 1, 2, 3}
+    int type [] = {0, 1, 2};
+
+    int type_lens[] = {c, num, sp};
+
+    int curr_type;
 
     srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
     // https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c/39475626#39475626
@@ -63,7 +79,16 @@ static char * make_password(int l, int num, int sp) {
 
     // randomly select chars from possible chars and insert them to password
     for (int i = 0; i < l; ++i) {
+        // determine which type to use
+        curr_type = type[rand() % TYPE_LEN];
 
+        // decrement type lenth and remove type from type pool if neccessary 
+        if (--type_lens[curr_type] <= 0) {
+            // remove type from type pool (var: type)
+        }
+
+        // select a character of the respective type and append it. 
+        CHARS[(rand() % ()) + ];  // (rand() % type range) + type offset
     }
 
     // maybe add feature so that params are passed by reference, reassigned
