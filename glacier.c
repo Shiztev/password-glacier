@@ -42,6 +42,12 @@
 
 
 /**
+ * Number of 'parts' of the password that can be customized. 
+ */
+#define PARTS 3
+
+
+/**
  * @brief Allows the user to specify how they would like their 
  * password formated.
  * 
@@ -56,17 +62,24 @@ int main(int argc, char * argv[]) {
      */
     int lengths[] = {DEF_LEN, DEF_INTS, DEF_SP};
 
-    // if user provides args from command line, utilize those 
-    for (int i = 1; i < argc; i++) {
+    // ----- CLI INPUT --------------------------------------------------------
+    for (int i = 1; i < argc; ++i) {
         lengths[i - 1] = strtol(argv[i], NULL, 10);
     }
 
     // to generate a password, print the password, then exit.
     printf("%s\n", password(lengths[0], lengths[1], lengths[2]));
+    // ------------------------------------------------------------------------
 
     // otherwise, loop, gathering user input, and produce 
     // passwords w/r/t user input. Exit on EOF or dedicated 
     // quit statement.
+    // ----- STD INPUT---------------------------------------------------------
+    for (int i = 0; i < PARTS; ++i) {
+
+
+    }
+
 
 
     return 0;
