@@ -48,6 +48,12 @@
 
 
 /**
+ * List of prompts for user input, with respect to a 'part' of the password.
+ */
+char ** PROMPTS = {"Passowrd Length: ", "Number of Integers: ", "Number of Special Characters: "};
+
+
+/**
  * @brief Allows the user to specify how they would like their 
  * password formated.
  * 
@@ -75,11 +81,12 @@ int main(int argc, char * argv[]) {
     // passwords w/r/t user input. Exit on EOF or dedicated 
     // quit statement.
     // ----- STD INPUT---------------------------------------------------------
-    for (int i = 0; i < PARTS; ++i) {
+    while(1) {  // FINISH CONDITIONAL
+        for (int i = 0; i < PARTS; ++i) {
+            printf("%s\n", PROMPTS[i]);
 
-
+        }
     }
-
 
 
     return 0;
