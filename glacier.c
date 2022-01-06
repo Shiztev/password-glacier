@@ -61,6 +61,30 @@ int LENGTHS[] = {DEF_LEN, DEF_INTS, DEF_SP};
 
 
 /**
+ * Defualt lengths of password elements.
+ *      Order: PASSWORD LENGTH, NUMBER OF INTS, NUMBER OF SPECIAL CHARS
+ */
+int DEFAULTS[] = {DEF_LEN, DEF_INTS, DEF_SP};
+
+
+/**
+ * @brief Gets lengths for password elements from standard input.
+ */
+static void get_lengths() {
+    char * tmp;
+    for (int i = 0; i < PARTS; ++i) {
+        printf("%s\n", PROMPTS[i]);
+        scanf("%s", tmp);
+        if (!strcmp(tmp, "\0")) {  // if input isn't empty (EOF/New line? just hits enter)
+            LENGTHS[i] = (int)strtol(tmp, NULL, 10);
+        } else {
+            LENGTHS[i] = DEFAULTS[i];
+        }
+    }
+}
+
+
+/**
  * @brief Allows the user to specify how they would like their 
  * password formated.
  * 
@@ -71,6 +95,9 @@ int LENGTHS[] = {DEF_LEN, DEF_INTS, DEF_SP};
 int main(int argc, char * argv[]) {
     /// Temporary storage for input.
     char* tmp;
+
+    /// Boolean determining if previous settings should be reused.
+    int rep_set = 0;
 
     // ----- CLI INPUT --------------------------------------------------------
     if (argc > 1) {
@@ -92,14 +119,9 @@ int main(int argc, char * argv[]) {
     printf(); // FIXME: prompt/instructions on input requirements
     printf("Length of password cannot exceed %d.", MAX_LEN);  // FIXME: should be able to access MAX_LEN from password.c
 
-
     do {
-        for (int i = 0; i < PARTS; ++i) {
-            printf("%s\n", PROMPTS[i]);
-            scanf("%s", tmp);
-            if (!strcmp(tmp, "\0")) {  // if input isn't empty (EOF/New line? just hits enter)
-                LENGTHS[i] = (int)strtol(tmp, NULL, 10);
-            }
+        if (!rep_set) {
+            get_lengths();
         }
 
         // determine if the user would like another passowrd
@@ -110,19 +132,21 @@ int main(int argc, char * argv[]) {
         if (!strcmp(tmp, "yes")) {  // check for other forms of 'yes'
             
                 if (!strcmp(tmp, "yes")) {
+                    rep_set = 1;
 
                 } else if (!strcmp(tmp, "no")) {
                     // reset default values
+                    rep_set = 0;
                     LENGTHS[0] = DEF_LEN;
                     LENGTHS[1] = DEF_INTS;
                     LENGTHS[2] = DEF_SP;
                 }
 
-
+        } else if (!strcmp(tmp, "no")) {
+            break;
         }
 
     } while(1);
-
 
     return 0;
 }
