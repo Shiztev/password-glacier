@@ -127,22 +127,25 @@ int main(int argc, char * argv[]) {
         // determine if the user would like another passowrd
         printf("\n%s\n\nWould you like another password?", password(LENGTHS[0], LENGTHS[1], LENGTHS[2]));
         scanf("%s", tmp);
-        
-        printf("\nDo you want to use the same settings as last time?\n");
+
         if (!strcmp(tmp, "yes")) {  // check for other forms of 'yes'
-            
-                if (!strcmp(tmp, "yes")) {
-                    rep_set = 1;
 
-                } else if (!strcmp(tmp, "no")) {
-                    // reset default values
-                    rep_set = 0;
-                    LENGTHS[0] = DEF_LEN;
-                    LENGTHS[1] = DEF_INTS;
-                    LENGTHS[2] = DEF_SP;
-                }
+            printf("\nDo you want to use the same settings as last time?\n");
+            if (!strcmp(tmp, "yes")) {
+                
+                    if (!strcmp(tmp, "yes")) {
+                        rep_set = 1;
 
-        } else if (!strcmp(tmp, "no")) {
+                    } else if (!strcmp(tmp, "no")) {
+                        // reset default values
+                        rep_set = 0;
+                        LENGTHS[0] = DEF_LEN;
+                        LENGTHS[1] = DEF_INTS;
+                        LENGTHS[2] = DEF_SP;
+                    }
+            }
+
+        } else if (!strcmp(tmp, "no")) {  // check for other forms of no/quit
             break;
         }
 
