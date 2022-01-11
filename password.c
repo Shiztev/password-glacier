@@ -33,9 +33,30 @@
 
 
 /**
+ * Length of CHARS.
+ */
+static const int CHARS_LEN = 71;
+
+
+/**
  * Array of possible capital alphabetical characters.
  */
-static const char * CHARS = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!@#$%^&*";
+static const char CHARS[CHARS_LEN] = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!@#$%^&*";
+
+
+/**
+ * Starting indices for each type in CHARS. Includes length as final start point for computations.
+ */
+static const int * STARTS = {0, 26, 52, 62, 71};
+
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// find API for sets for type data structure?
+/**
+ * Data structure containing the current possible data types that can be
+ * appended to the password. 
+ */
+int type [] = {0, 1, 2};
 
 
 /**
@@ -48,19 +69,16 @@ static const char * CHARS = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBN
  */
 static char * make_password(int l, int num, int sp) {
     // declare (and initialize) variables
-    int c = (l - num) - sp;  // number of alphabetic characters to be in password
-    char pswrd[l];  // password's character buffer
+    /// number of alphabetic characters to be in password
+    int c = (l - num) - sp;
+    
+    /// password's character buffer
+    char pswrd[l];
 
-    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    // find API for sets for type data structure?
-    /**
-     * Data structure containing the current possible data types that can be
-     * appended to the password. 
-     */
-    int type [] = {0, 1, 2};
-
+    /// Character type lengths, respective of type index array
     int type_lens[] = {c, num, sp};
 
+    /// Temporary storage for current index from type index array
     int curr_type;
 
     srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
@@ -88,7 +106,8 @@ static char * make_password(int l, int num, int sp) {
         }
 
         // select a character of the respective type and append it. 
-        CHARS[(rand() % ()) + ];  // (rand() % type range) + type offset
+        // (random value in the index range of curr_type) + start index of curr_type
+        pswrd[i] = CHARS[(rand() % (STARTS[curr_type + 1] - STARTS[curr_type])) + STARTS[curr_type]];  // (rand() % type range) + type offset
     }
 
     // maybe add feature so that params are passed by reference, reassigned
