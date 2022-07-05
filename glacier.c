@@ -68,8 +68,10 @@ static void get_lengths(int * lengths) {
     for (int i = 0; i < PARTS; ++i) {
         printf("%s\n", PROMPTS[i]);
         scanf("%s", tmp);
+
         if (!strcmp(tmp, "\0")) {  // if input isn't empty (EOF/New line? just hits enter)
             lengths[i] = (int)strtol(tmp, NULL, 10);
+
         } else {
             lengths[i] = DEFAULTS[i];
         }

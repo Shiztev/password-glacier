@@ -6,13 +6,11 @@
  * @author Stevie Alvarez
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "password.h"
-
 
 /**
  * @brief Generate a password of length l.
