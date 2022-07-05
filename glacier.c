@@ -83,19 +83,23 @@ int main(int argc, char * argv[]) {
     free(pswrd);
     pswrd = NULL;
 
-    while (1) {
-      printf("\nWould you like another password? (y/n) ");
-      scanf("%c", &tmp);
+    printf("\nWould you like another password? (y/n) ");
+
+    do {
+      while((tmp = getchar()) != '\n' && tmp != EOF) { }
+      tmp = getchar();
 
       if (tmp == 'y') {
         rep_set = 1;
         break;
-
       } else if (tmp == 'n') {
         rep_set = 0;
         break;
       }
-    }
+
+      printf("Please enter 'y' or 'n': ");
+
+    } while (1);
 
   } while(rep_set);
   // ------------------------------------------------------------------------
