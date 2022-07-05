@@ -14,22 +14,10 @@
 
 #include "password.h"
 
-
-/* Initial implementation with hardcoded options. Look for ways to expand
-    to a more calculating way of generating characters (could use ascii, 
-    but special characters get weird). */
-
-/* rand() is not secure. An improvement would be to utilize a more secure
-    random number generator (e.g. randombytes API) */
-    // libsodium: https://github.com/jedisct1/libsodium
-    // urandom
-
-
 /**
  * Default password length.
  */
 #define DEF_LEN 20
-
 
 /**
  * @brief Allows the user to specify how they would like their 
