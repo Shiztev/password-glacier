@@ -23,6 +23,10 @@ static char * make_password(int l) {
   srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
   // https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c/39475626#39475626
 
+  if (l > MAX_LEN) {
+    l = MAX_LEN;
+  }
+
   for (int i = 0; i < l; ++i) {
     pswrd[i] = 33 + (rand() % 90);
   }
