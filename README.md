@@ -1,5 +1,6 @@
 # password-glacier
 A password generator. 
 
-NOTE: Current implementation uses an insecure random number generator. 
-      I have plans to fix this in the future.
+## Dependancies
+ - <a target="_blank" href="https://github.com/jedisct1/libsodium">libsodium</a>
+

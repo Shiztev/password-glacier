@@ -10,8 +10,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <sodium.h>
 
 #include "password.h"
+
+#define START_OFFSET 33
+#define ASCII_RANGE 90
 
 /**
  * @brief Generate a password of length l.
@@ -20,16 +24,18 @@
  * @return a randomized password, constituted of numbers, letters, and special chars
  */
 static char * make_password(int l) {
-  char * pswrd = malloc(l * sizeof(char));
-  srand(time(NULL));  // set random seed, is more secure way to do this? yes: openssl rand/RAND_bytes
-  // https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c/39475626#39475626
-
   if (l > MAX_LEN) {
     l = MAX_LEN;
   }
+  
+  char * pswrd = malloc(l * sizeof(char));
 
-  for (int i = 0; i < l; ++i) {
-    pswrd[i] = 33 + (rand() % 90);
+  if (sodium_init() < 0) {
+    return NULL;
+  }
+
+  for (int i = 0; i < l; i++) {
+    pswrd[i] = START_OFFSET + randombytes_uniform(90);
   }
 
   return pswrd;
@@ -39,5 +45,6 @@ static char * make_password(int l) {
  * Calls make_password to generate a password. 
  */
 char * password(int l) {
-    return make_password(l);
+
+  return make_password(l);
 }
