@@ -23,11 +23,9 @@
  * characters.
  * 
  * @param l desired length of password
- * @param num number of integers to be in password
- * @param sp number of special characters to be in password
- * @return a randomized password, within the provided parameters
+ * @return a randomized password, constituted of numbers, letters, and special chars
  */
-char * password(int l, int num, int sp);
+char * password(int l);
 
 
 #endif
