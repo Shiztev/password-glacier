@@ -3,6 +3,8 @@
  * @brief Generates passwords built around user specifications.
  * 
  * Compile: gcc -Wall -Wextra -pedantic -ggdb -std=c99 -c glacier.c
+ *          gcc -Wall -Wextra -pedantic -ggdb -std=c99 -c password.c
+ *          gcc -o glacier glacier.o password.o
  * @author Stevie Alvarez
  */
 
