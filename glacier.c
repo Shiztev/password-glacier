@@ -39,7 +39,7 @@
  */
 int main(int argc, char * argv[]) {
   /// Temporary storage for input.
-  char* tmp;
+  char tmp = 'n';
 
   /// Password storage.
   char* pswrd;
@@ -56,7 +56,7 @@ int main(int argc, char * argv[]) {
   if (argc == 2) {
     length = strtol(argv[1], NULL, 10);
     pswrd = password(length);
-    printf("%s\n", pswrd);
+    printf("password: %s\n", pswrd);
 
     free(pswrd);
     pswrd = NULL;
@@ -79,19 +79,24 @@ int main(int argc, char * argv[]) {
     printf("Enter length: ");
     scanf("%ld", &length);
     pswrd = password(length);
-    printf("\n%s\n", pswrd);
+    printf("\npassword: %s\n", pswrd);
     free(pswrd);
     pswrd = NULL;
 
-    printf("\nWould you like another password?");
-    scanf("%s", tmp);
+    while (1) {
+      printf("\nWould you like another password? (y/n) ");
+      scanf("%c", &tmp);
 
-    if (!strcmp(tmp, "yes")) {  // check for other forms of 'yes'
-      rep_set = 1;
+      if (tmp == 'y') {
+        rep_set = 1;
+        break;
 
-    } else {
-      rep_set = 0;
+      } else if (tmp == 'n') {
+        rep_set = 0;
+        break;
+      }
     }
+
   } while(rep_set);
   // ------------------------------------------------------------------------
   // ------------------------------------------------------------------------
