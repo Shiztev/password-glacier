@@ -5,7 +5,6 @@
  * @author Stevie Alvarez
  */
 
-
 /**
  * Max number of characters constituting a password.
  */
@@ -13,9 +12,9 @@
 #define MAX_LEN 127
 #endif
 
+
 #ifndef PASSWORD_H
 #define PASSWORD_H
-
 
 /**
  * Generates a randomized password of length l consisting of num 
@@ -26,6 +25,5 @@
  * @return a randomized password, constituted of numbers, letters, and special chars
  */
 char * password(int l);
-
 
 #endif
