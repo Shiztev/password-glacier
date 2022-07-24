@@ -1,7 +1,7 @@
 # password-glacier
 A secure password generator. 
 
-## Dependancies
+## Dependancies and Credits
  - <a target="_blank" href="https://github.com/jedisct1/libsodium">libsodium</a>
 
 ## Build
