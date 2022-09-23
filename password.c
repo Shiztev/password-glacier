@@ -28,7 +28,7 @@ static char * make_password(int l) {
     l = MAX_LEN;
   }
   
-  char * pswrd = malloc(l * sizeof(char));
+  char * pswrd = calloc(0, l * sizeof(char));
 
   if (sodium_init() < 0) {
     return NULL;
